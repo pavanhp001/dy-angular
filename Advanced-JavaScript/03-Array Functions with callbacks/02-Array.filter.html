@@ -13,12 +13,19 @@
             //return true if division by two is zero, else return false
             return (v % 2 == 0) ? true : false;
         }
+        function isAdd(v, i, ary) {
+            //return true if division by two is zero, else return false
+            return (v % 2 != 0) ? true : false;
+        }
 
         //define array
         var a = [2, 45, 26, 39, 12, 7, 9];
         //execute "filter" method by passing callback function
         var b  = a.filter(isEven); //"b" is new array with filtered elements from array "a"
-        alert(b); //displays "2,6,12"
+        var c  = a.filter(isAdd);
+     
+        alert("Even numbers "+b); //displays "2,6,12"
+        alert("Add numbers "+c);
 
     </script>
 </head>

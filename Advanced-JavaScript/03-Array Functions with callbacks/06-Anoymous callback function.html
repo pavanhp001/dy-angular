@@ -4,6 +4,8 @@
 <head>
     <title></title>
     <script>
+
+    // Source  https://www.tutorialspoint.com/javascript/javascript_arrays_object.htm
         //DEMO: using Anonymous Callback function to work with Array.forEach method
 
         //define array
@@ -12,7 +14,87 @@
         a.forEach(function (v, i, ary) {
             ary[i] = v + 1; //increment the current element value
         });
-        alert(a); //displays "3, 46, 27"
+       // alert(a); //displays "3, 46, 27"
+
+         function isBigEnough(element, index, array) {
+            //alert("Element "+element);
+            return (element >= 10);
+         }
+         
+ //every        //Returns true if every element in this array satisfies the provided testing function.
+         var passed = [12, 55, 85, 130, 44].every(isBigEnough);
+         document.write("First Test Value : " + passed +"<br>"); 
+         
+         passed = [1, 2, 3, 4, 5, 11].every(isBigEnough);
+         document.write("Second Test Value : " + passed ); 
+
+//indexOf     //Returns the index of the found element.    
+
+         var index = [12, 5, 8, 130, 44].indexOf(8);
+                    // 0, 1, 2,  3,   4
+         document.write("index is : " + index );     // index is : 2
+         
+         var index = [12, 5, 8, 130, 44].indexOf(13);
+         document.write("<br />index is : " + index +"<br>");  //index is : -1 
+
+//join    //    Javascript array join() method joins all the elements of an array into a string.     
+
+         var arr = new Array("First","Second","Third");
+         
+         var str = arr.join();
+         document.write("str : " + str );  //str : First,Second,Third
+         
+         var str = arr.join(", ");
+         document.write("<br />str : " + str ); //str : First, Second, Third
+         
+         var str = arr.join(" + ");
+         document.write("<br />str : " + str ); //str : First + Second + Third 
+         //document.write("<br />"+str.typeOf());  //TypeError: str.typeOf is not a function
+
+         document.write("<br />str : " +typeof str +"<br>");  //str : string 
+
+//pop    Returns the removed element from the array.     
+
+        var numbers = [1, 4, 9];
+         
+         var element = numbers.pop();
+         document.write("element is : " + element +"<br>"); //element is : 9
+         document.write("numbers array : " + numbers +"<br>"); //numbers array : 1,4
+         
+         var element = numbers.pop();
+         document.write("<br />element is : " + element +"<br>");  //element is : 4 
+         document.write("numbers array : " + numbers +"<br>");   //numbers array : 1
+
+// push  Javascript array push() method appends the given element(s) in the last of the array and returns the length of the new array.  
+
+        var length = numbers.push(10);
+         document.write("new numbers is : " + numbers ); //new numbers is : 1,10
+         
+         length = numbers.push(20);
+         document.write("<br />new numbers is : " + numbers );    //new numbers is : 1,10, 20
+
+//reduce  
+
+        var myReducer = function (a, b){
+            return a + b; 
+        }
+
+        function addReducer(a,b) {
+            return a + b; //new element in 'i'th location of new array
+        }
+
+        var total = [0, 1, 2, 3].reduce(myReducer);
+
+        document.write("<br />total is : " + total ); //total is : 6
+
+        //var total1 = [0, 1, 2, 3,4,5].reduce(addReducer());  //TypeError: addReducer(...) is not a function
+        var total1 = [0, 1, 2, 3,4,5].reduce(addReducer);
+         document.write("<br />total is : " + total1 );     //total is : 15
+
+         var total2 = [0, 1, 2, 3,23,12].reduce(function(a, b){ return a + b; });
+         document.write("<br />total is : " + total2 );     //total is : 41 
+
+
 
     </script>
 </head>

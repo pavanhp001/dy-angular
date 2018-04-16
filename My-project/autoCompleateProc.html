@@ -1,0 +1,74 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta charset="utf-8">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="jquery-1.8.0.js"></script>
+<script src="jquery-ui-1.11.4.js"></script>
+<script>
+$(document).ready(function(){
+
+	var isReferrerSelected = false;
+    try{
+	$("#referrerSearch").autocomplete({
+		minLength: 0,
+		source: businessPartyArray,
+		focus: function( event, ui ) {
+			isReferrerSelected = false;
+	  		return false;
+		},	
+		select: function( event, ui ) {
+	 		$( this ).val( ui.item.label );
+	 		$( "#referralDet" ).val( ui.item.value );
+	 		$("div#subDiv").css("display","block");
+	 		isReferrerSelected = true;
+	 		return false;
+		},
+		close: function( event, ui ) {
+			//To remove content from text box when we not selected because we are storing the value in text box on focus.
+			if( !isReferrerSelected )
+			{
+				$( "#referralDet" ).val( "" );
+				$("div#subDiv").css("display","none");
+			}
+		},
+		response: function( event, ui ) {
+			isReferrerSelected = false;
+	        if((ui.content).length==0)
+	        {
+	        	$("div#subDiv").css("display","none");
+	        	$( "#referralDet" ).val( "" );
+	        }
+	    }
+	 }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+	  	return $( "<li style='border-bottom:1px solid #d3d3d3;'>" ).append( item.label ).appendTo( ul );
+	};
+	}catch(err){alert(err);}
+
+});
+</script>
+</head>
+<body>
+
+<form action="">
+	<div>
+		<label style="font-size: 16px; font-weight: bold; color: black;">Referrer Name Search&nbsp;</label> 
+  		<input type="text" name="referrerSearch" id="referrerSearch" value="" style="height: 24px;width: 425px;"></input>
+  	</div>
+  	<div><input type="text" id="referralDet" value="" name="referralDet" /></div>
+  	<input type="submit">
+</form>
+</body>
+</html>
+
+<script>
+
+var businessPartyArray = JSON.parse('[{"label":"ADT Home Security","value":"35111|ADT Home Security|66462"},{"label":"AMLI Residential","value":"34606|AMLI Residential|82111"},{"label":"Alabama Power","value":"26240|Alabama Power|51020"},{"label":"Allconnect Main","value":"1476|Allconnect Main|51054"},{"label":"Alliant Energy","value":"28370|Alliant Energy|51022"},{"label":"Ameren","value":"28224|Ameren|51023"},{"label":"American Electric Power","value":"28225|American Electric Power|51019"},{"label":"Bay State Gas","value":"32510|Bay State Gas|51024"},{"label":"BuildWish","value":"31947|BuildWish|51060"},{"label":"CLECO","value":"31368|CLECO|51025"},{"label":"CPS Energy","value":"27953|CPS Energy|51026"},{"label":"Camden Properties","value":"34610|Camden Properties|66305"},{"label":"College Hunks Hauling Junk","value":"35079|College Hunks Hauling Junk|51058"},{"label":"Columbia Gas","value":"33873|Columbia Gas|51037"},{"label":"ComEd","value":"33133|ComEd|51046"},{"label":"Connections from PSE&G","value":"34173|Connections from PSE&G|51052"},{"label":"Connections from Westar Energy","value":"34293|Connections from Westar Energy|51051"},{"label":"Consumers Energy Home Solutions","value":"35078|Consumers Energy Home Solutions|66483"},{"label":"Consumers Energy","value":"26440|Consumers Energy|51013"},{"label":"DISH (Online)","value":"33513|DISH (Online)|51047"},{"label":"Direct Star","value":"31475|Direct Star|51027"},{"label":"Dominion Energy","value":"26040|Dominion Energy|51028"},{"label":"Dominion Products & Services","value":"35013|Dominion Products & Services|51061"},{"label":"Duke Energy Carolinas (formerly Progress)","value":"16040|Duke Energy Carolinas (formerly Progress)|51016"},{"label":"Duquesne Light Company","value":"34753|Duquesne Light Company|51057"},{"label":"EZLandlordforms","value":"35153|EZLandlordforms|66467"},{"label":"Entergy - Arkansas","value":"33255|Entergy - Arkansas|51029"},{"label":"Eversource","value":"33893|Eversource|51040"},{"label":"FirstEnergy Direct Mail","value":"35190|FirstEnergy Direct Mail|66190"},{"label":"FirstEnergy Landlords","value":"33937|FirstEnergy Landlords|64530"},{"label":"FirstEnergy Residential Choice","value":"33940|FirstEnergy Residential Choice|64505"},{"label":"FirstEnergy Residential High Bill","value":"33938|FirstEnergy Residential High Bill|64508"},{"label":"FirstEnergy Residential Movers","value":"33935|FirstEnergy Residential Movers|63476"},{"label":"FirstEnergy Small Commercial Choice","value":"33941|FirstEnergy Small Commercial Choice|64500"},{"label":"FirstEnergy Small Commercial High Bill","value":"33939|FirstEnergy Small Commercial High Bill|64531"},{"label":"FirstEnergy Small Commercial Movers","value":"33936|FirstEnergy Small Commercial Movers|64528"},{"label":"FirstEnergy","value":"26280|FirstEnergy|51018"},{"label":"Full Beaker","value":"35177|Full Beaker|66481"},{"label":"Gas South","value":"31466|Gas South|51031"},{"label":"Georgia Power","value":"25920|Georgia Power|51032"},{"label":"Gulf Power","value":"26400|Gulf Power|51033"},{"label":"Homescape","value":"31683|Homescape|51059"},{"label":"Homeserve","value":"35195|Homeserve|66474"},{"label":"Hybris Down","value":"35121|Hybris Down|51063"},{"label":"KCP&L","value":"33933|KCP&L|51034"},{"label":"Mississippi Power","value":"26401|Mississippi Power|51035"},{"label":"MyMove","value":"35194|MyMove|63794"},{"label":"Nicor","value":"31709|Nicor|51036"},{"label":"Northern IN Public Service Company","value":"32050|Northern IN Public Service Company|51014"},{"label":"O Power","value":"33114|O Power|51038"},{"label":"PECO Commercial","value":"33945|PECO Commercial|64576"},{"label":"PECO Customer Direct Dial","value":"33944|PECO Customer Direct Dial|63541"},{"label":"PECO IVR Transfer","value":"33946|PECO IVR Transfer|64577"},{"label":"PECO Movers","value":"33942|PECO Movers|64643"},{"label":"PECO Non-Movers","value":"33943|PECO Non-Movers|64574"},{"label":"PPL","value":"35175|PPL|66504"},{"label":"Pacific Gas and Electric","value":"31708|Pacific Gas and Electric|51039"},{"label":"Public Service of New Mexico","value":"27853|Public Service of New Mexico|51017"},{"label":"Quicken Loans","value":"35097|Quicken Loans|66268"},{"label":"RealPage","value":"35105|RealPage|66455"},{"label":"Reliant Energy","value":"30575|Reliant Energy|51041"},{"label":"Reviews.com","value":"35193|Reviews.com|68649"},{"label":"Sacramento Municipal Utility District","value":"26420|Sacramento Municipal Utility District|51043"},{"label":"San Diego Gas and Electric","value":"33713|San Diego Gas and Electric|51042"},{"label":"Sares Regis Group","value":"34612|Sares Regis Group|66315"},{"label":"Save On Energy Transfers","value":"35211|Save On Energy Transfers|66988"},{"label":"Southern California Gas Company","value":"33493|Southern California Gas Company|51044"},{"label":"TSI","value":"35179|TSI|66497"},{"label":"TXU Energy","value":"33773|TXU Energy|51045"},{"label":"The Harbor Group","value":"34609|The Harbor Group|66308"},{"label":"Tucson Electric Power","value":"34413|Tucson Electric Power|51053"},{"label":"Vacant Programs","value":"99999|Vacant Programs|66070"},{"label":"Vantage","value":"34595|Vantage|51005"},{"label":"Village Green","value":"34602|Village Green|51009"},{"label":"We Energies Confirm","value":"28373|We Energies Confirm|51015"},{"label":"Xcel Energy","value":"25879|Xcel Energy|51012"},{"label":"Yardi","value":"35104|Yardi|66454"},{"label":"allconnect","value":"33153|allconnect|51055"},{"label":"alliance","value":"34614|alliance|66311"},{"label":"att","value":"34599|att|51001"},{"label":"avalonbay","value":"34617|avalonbay|66302"},{"label":"bozzuto","value":"34594|bozzuto|51007"},{"label":"charter","value":"34607|charter|51010"},{"label":"comcast","value":"34603|comcast|51050"},{"label":"cox","value":"34600|cox|51006"},{"label":"electricitytexas","value":"34608|electricitytexas|51002"},{"label":"fairfield","value":"34618|fairfield|66306"},{"label":"free411","value":"34596|free411|51003"},{"label":"gables","value":"34601|gables|66307"},{"label":"gasgeorgia","value":"34597|gasgeorgia|51011"},{"label":"greystar","value":"34611|greystar|66314"},{"label":"imt","value":"34605|imt|66309"},{"label":"lincoln","value":"34620|lincoln|66310"},{"label":"pegasus","value":"34613|pegasus|66312"},{"label":"post","value":"34615|post|66335"},{"label":"prometheus","value":"34621|prometheus|66313"},{"label":"timewarner","value":"34619|timewarner|51048"},{"label":"udr","value":"34598|udr|51008"},{"label":"usaa","value":"34573|usaa|51056"},{"label":"whitefence","value":"34075|whitefence|51004"},{"label":"zrs","value":"34604|zrs|66319"},{"label":"zzz-AEP-Dish/AT&T/Spectrum","value":"35144|zzz-AEP-Dish/AT&T/Spectrum|51073"},{"label":"zzz-AEP-Dish/DTV/TWC","value":"35136|zzz-AEP-Dish/DTV/TWC|51065"},{"label":"zzz-AEP-Dish/DTV","value":"35135|zzz-AEP-Dish/DTV|51064"},{"label":"zzz-Consumers-Dish/DTV/ATT/Comcast","value":"35141|zzz-Consumers-Dish/DTV/ATT/Comcast|51070"},{"label":"zzz-Dominion-Dish/DTV/Verizon/Cox","value":"35139|zzz-Dominion-Dish/DTV/Verizon/Cox|51068"},{"label":"zzz-FE-Dish/DTV/Frontier/Spectrum","value":"35145|zzz-FE-Dish/DTV/Frontier/Spectrum|51074"},{"label":"zzz-FE-Dish/DTV","value":"35138|zzz-FE-Dish/DTV|51067"},{"label":"zzz-FE-Verizon/Dish/DTV/Cablevision","value":"35137|zzz-FE-Verizon/Dish/DTV/Cablevision|51066"},{"label":"zzz-PG&E-Dish/DTV/AT&T/Comcast","value":"35143|zzz-PG&E-Dish/DTV/AT&T/Comcast|51072"},{"label":"zzz-Xcel-Dish/DTV/Comcast/Centurylink","value":"35142|zzz-Xcel-Dish/DTV/Comcast/Centurylink|51071"},{"label":"zzz-Xcel-Dish/DTV","value":"35140|zzz-Xcel-Dish/DTV|51069"}]');
+
+
+</script>
+
+
+
+
