@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <script type="text/javascript">
+  //using recommended pattern to use "$scope" (mainly to work even after minimizing js)
+  var sample = angular.module("sample", []);
+  sample.controller('emp', ['$scope', '$parse', function(scope, $parse) {// "s" is reference to "$scope"
+    scope.Name = "Jag";
+    scope.Sal = 4500;
+
+    scope.roles = [];
+
+    scope.checkboxData = [{"id":1,"first_name":"Britteny","last_name":"Hoys","email":"bhoys0@photobucket.com","gender":"Female","ip_address":"183.123.147.174"},
+      {"id":2,"first_name":"Melisandra","last_name":"Chmiel","email":"mchmiel1@discovery.com","gender":"Female","ip_address":"124.164.161.213"},
+      {"id":3,"first_name":"Nahum","last_name":"Deverell","email":"ndeverell2@trellian.com","gender":"Male","ip_address":"43.231.68.53"},
+      {"id":4,"first_name":"Lind","last_name":"Rittelmeyer","email":"lrittelmeyer3@fema.gov","gender":"Female","ip_address":"116.83.216.252"},
+      {"id":5,"first_name":"Kary","last_name":"Wannell","email":"kwannell4@hugedomains.com","gender":"Female","ip_address":"113.144.87.209"},
+      {"id":6,"first_name":"Idette","last_name":"Gerckens","email":"igerckens5@so-net.ne.jp","gender":"Female","ip_address":"240.47.237.54"},
+      {"id":7,"first_name":"Filide","last_name":"Pegrum","email":"fpegrum6@addthis.com","gender":"Female","ip_address":"207.222.95.232"},
+      {"id":8,"first_name":"Johannah","last_name":"Lockney","email":"jlockney7@delicious.com","gender":"Female","ip_address":"31.45.56.24"},
+      {"id":9,"first_name":"Dorris","last_name":"Schiesterl","email":"dschiesterl8@people.com.cn","gender":"Female","ip_address":"0.125.104.74"},
+      {"id":10,"first_name":"Godart","last_name":"Steffans","email":"gsteffans9@wunderground.com","gender":"Male","ip_address":"153.155.5.227"},
+      {"id":11,"first_name":"Colin","last_name":"Sandercock","email":"csandercocka@dot.gov","gender":"Male","ip_address":"58.227.254.142"},
+      {"id":12,"first_name":"Corabel","last_name":"Gillani","email":"cgillanib@discuz.net","gender":"Female","ip_address":"154.55.120.154"},
+      {"id":13,"first_name":"Janean","last_name":"Mains","email":"jmainsc@google.com.br","gender":"Female","ip_address":"216.31.107.238"},
+      {"id":14,"first_name":"Danit","last_name":"Stredder","email":"dstredderd@weebly.com","gender":"Female","ip_address":"147.245.181.243"},
+      {"id":15,"first_name":"Darren","last_name":"Cudd","email":"dcudde@house.gov","gender":"Male","ip_address":"105.58.24.202"}];
+
+    scope.roles = [];
+    scope.check = function(value) {
+      //http://www.programming-free.com/2014/05/angularjs-retrieve-multiple-checkbox-selected-options.html
+      console.log(value);
+      var idx = scope.roles.indexOf(value);
+      if (idx > -1) {
+        scope.roles.splice(idx, 1);
+      }
+      else{
+        scope.roles.push(value);
+      }
+      console.log("roles : "+angular.fromJson(scope.roles));
+      console.log("roles : "+angular.toJson(scope.roles));
+     // console.log("roles : "+angular.fromJSON(scope.roles));
+
+      
+    };
+  }]);
+
+//console.log(scope.checkboxData);
+  </script>
+</head>
+<body ng-app="sample">
+  <div ng-controller="emp">
+    <div >
+      <span>
+       <table>
+          <thead>
+            <th>id</th>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>email</th>
+            <th>gender</th>
+            <th>ip_address</th>
+            <th>select Data</th>
+          </thead>
+          <tbody ng-repeat="data in checkboxData">
+            <td>{{data.id}}</td>
+            <td>{{data.first_name}}</td>
+            <td>{{data.last_name}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.gender}}</td>
+            <td>{{data.ip_address}}</td>
+            <td><input type = "checkbox" JsonData = {{data}} ng-model = "user.roles" ng-checked="roles.indexOf(data) > -1"   ng-change="check(data)" >{{data.last_name}}
+            </td>
+          </tbody>
+        </table>
+        <div ng-repeat="data1 in selectedData.roles">
+          <span>{{data1}}</span>
+        </div>
+      </span>
+
+    </div>
+  </div>
+</body>
+</html>
